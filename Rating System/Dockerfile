@@ -1,5 +1,3 @@
-FROM node:12.13-alpine As builder
-
 ARG db_host=ec2-52-70-107-254.compute-1.amazonaws.com
 ARG db_database=deiemsgb7hgvb2
 ARG db_user=idbeoaxtotpqsd
