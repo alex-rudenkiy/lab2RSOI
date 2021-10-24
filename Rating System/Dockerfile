@@ -1,6 +1,6 @@
 #ARG PORT
 #ARG PORT
-RUN echo ${PORT}
+RUN echo 4000
 
 # WORKDIR /app
 # COPY . .
