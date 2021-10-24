@@ -16,6 +16,8 @@ ARG PORT
 #EXPOSE $service_port
 #CMD ["npm", "run", "start:prod"]
 
+RUN echo $PORT
+
 FROM node:10 AS builder
 WORKDIR /app
 COPY ./package.json ./
@@ -28,5 +30,5 @@ RUN npm run build
 FROM node:10-alpine
 WORKDIR /app
 COPY --from=builder /app ./
-EXPOSE 4002
+EXPOSE $PORT
 CMD ["npm", "run", "start:prod"]
