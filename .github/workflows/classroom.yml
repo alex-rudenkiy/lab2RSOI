@@ -24,7 +24,7 @@ jobs:
       - name: Build and push Docker to Heroku
         env:
           HEROKU_APP_NAME: "rating-system-alex"
-          DOCKERFILE_DIRECTORY: "./Rating System"
+          DOCKERFILE_DIRECTORY: "/Rating System"
           HEROKU_EMAIL: alex-rudenkiy@mail.ru
           HEROKU_API_KEY: 22b1b640-f541-4b04-b267-5356f8bcdaec
           DOCKERFILE_NAME: "Dockerfile"
