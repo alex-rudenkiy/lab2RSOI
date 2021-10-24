@@ -12,7 +12,8 @@ ENV service_port=$PORT
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run start:prod
+RUN npm build
+CMD ["npm", "run", "start:prod"]
 
 
 #FROM node:10-alpine
