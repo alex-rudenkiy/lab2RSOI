@@ -22,25 +22,12 @@ jobs:
 #           docker_options: "--no-cache"
 #           process_type: "web"    
       - name: Build and push Docker to Heroku
-        env:
-          HEROKU_APP_NAME: "rating-system-alex"
-          DOCKERFILE_DIRECTORY: "/Rating System"
-          HEROKU_EMAIL: alex-rudenkiy@mail.ru
-          HEROKU_API_KEY: 22b1b640-f541-4b04-b267-5356f8bcdaec
-          DOCKERFILE_NAME: "Dockerfile"
-          DOCKER_OPTIONS: "--no-cache"
         run: |
-          cd ${DOCKERFILE_DIRECTORY}
-          echo ${HEROKU_API_KEY} | docker login \
-            --username=${HEROKU_EMAIL} \
-            registry.heroku.com \
-            --password-stdin
-          docker build \
-            --file ${DOCKERFILE_NAME} \
-            ${DOCKER_OPTIONS} \
-            --tag registry.heroku.com/${HEROKU_APP_NAME}/web .
-          heroku container:push web --app ${HEROKU_APP_NAME}
-          heroku container:release web --app ${HEROKU_APP_NAME}
+          cd "./Rating System"
+          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
+          docker build --file "Dockerfile" --no-cache --tag registry.heroku.com/rating-system-alex/web .
+          heroku container:push web --app rating-system-alex
+          heroku container:release web --app rating-system-alex
           
       - name: Run API Tests
         id: run-newman
