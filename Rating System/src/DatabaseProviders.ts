@@ -14,7 +14,8 @@ export const DatabaseProviders = [
         database: 'deiemsgb7hgvb2',
         ssl: true, 
         dialectOptions: {
-          ssl: true
+          ssl: true,
+          rejectUnauthorized: false
         }
       });
 
