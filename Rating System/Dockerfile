@@ -1,5 +1,5 @@
 #ARG PORT
-ARG PORT
+#ARG PORT
 RUN echo ${PORT}
 
 # WORKDIR /app
