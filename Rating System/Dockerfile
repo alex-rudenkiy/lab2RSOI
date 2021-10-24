@@ -11,8 +11,8 @@ ENV service_port=$PORT
 
 WORKDIR /app
 COPY . .
-RUN npm install
-RUN npm build
+CMD ["npm", "install"]
+CMD ["npm", "build"]
 CMD ["npm", "run", "start:prod"]
 
 
