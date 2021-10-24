@@ -12,8 +12,8 @@ ENV service_port=$PORT
 WORKDIR /app
 COPY . .
 CMD ["npm", "install"]
-CMD ["npm", "build"]
-CMD ["npm", "run", "start:prod"]
+#CMD ["npm", "build"]
+CMD ["npm", "run", "start:dev"]
 
 
 #FROM node:10-alpine
