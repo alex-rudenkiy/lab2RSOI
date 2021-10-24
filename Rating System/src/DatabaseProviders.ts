@@ -12,7 +12,6 @@ export const DatabaseProviders = [
         username: 'idbeoaxtotpqsd',
         password: 'd73980ef438f1c6afe364dd4b0cfce90167aeefb88410a5f1e7fa0ef9de85e05',
         database: 'deiemsgb7hgvb2',
-        native: true,
         ssl: true, 
         dialectOptions: {
           ssl: true
