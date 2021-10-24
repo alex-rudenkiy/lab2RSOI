@@ -1,5 +1,5 @@
 ARG PORT
-ENV service_port=$PORT
+#ENV service_port=$PORT
 
 
 # WORKDIR /app
@@ -28,5 +28,5 @@ RUN npm run build
 FROM node:10-alpine
 WORKDIR /app
 COPY --from=builder /app ./
-EXPOSE ${service_port}
+EXPOSE 4002
 CMD ["npm", "run", "start:prod"]
