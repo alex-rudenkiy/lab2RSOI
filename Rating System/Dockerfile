@@ -1,5 +1,6 @@
-ARG PORT
-
+#ARG PORT
+ENV PORT $PORT
+RUN echo ${PORT}
 
 # WORKDIR /app
 # COPY . .
