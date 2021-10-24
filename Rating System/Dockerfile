@@ -13,6 +13,7 @@ WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm install @types/node --save-dev
+RUN dir
 RUN npm run build
 
 
