@@ -11,16 +11,22 @@ jobs:
           fetch-depth: 0
 
       # TODO build, test and deploy project
-      - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+#       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
+#         uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+#         with:
+#           email:  "alex-rudenkiy@mail.ru"
+#           heroku_api_key: 22b1b640-f541-4b04-b267-5356f8bcdaec 
+#           heroku_app_name: "rating-system-alex"
+#           dockerfile_directory: "./Rating System"
+#           dockerfile_name: Dockerfile
+#           docker_options: "--no-cache"
+#           process_type: "web"    
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          email:  "alex-rudenkiy@mail.ru"
-          heroku_api_key: 22b1b640-f541-4b04-b267-5356f8bcdaec 
-          heroku_app_name: "rating-system-alex"
-          dockerfile_directory: "./Rating System"
-          dockerfile_name: Dockerfile
-          docker_options: "--no-cache"
-          process_type: "web"    
+          heroku_api_key: 22b1b640-f541-4b04-b267-5356f8bcdaec
+          heroku_app_name: "rating-system-alex" #Must be unique in Heroku
+          heroku_email: "alex-rudenkiy@mail.ru"
+          appdir: "./Rating System" # <- This will point to the api folder in your project
 
       - name: Run API Tests
         id: run-newman
