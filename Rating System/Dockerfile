@@ -12,7 +12,6 @@ ENV service_port=$PORT
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm install @types/node --save-dev
 RUN npm run start:prod
 
 
