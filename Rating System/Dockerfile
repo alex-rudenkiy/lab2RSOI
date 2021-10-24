@@ -5,15 +5,16 @@ ARG db_database=deiemsgb7hgvb2
 ARG db_user=idbeoaxtotpqsd
 ARG db_password=d73980ef438f1c6afe364dd4b0cfce90167aeefb88410a5f1e7fa0ef9de85e05
 
-ARG PORT
-ENV service_port=$PORT
+# ARG PORT
+# ENV service_port=$PORT
 
 
-WORKDIR /app
-COPY . .
-CMD ["npm", "install"]
-#CMD ["npm", "build"]
-CMD ["npm", "run", "start:dev"]
+# WORKDIR /app
+# COPY . .
+# CMD ["npm", "install"]
+# #CMD ["npm", "build"]
+# CMD ["npm", "run", "start:dev"]
+
 
 
 #FROM node:10-alpine
@@ -21,3 +22,34 @@ CMD ["npm", "run", "start:dev"]
 #COPY --from=builder /app ./
 #EXPOSE $service_port
 #CMD ["npm", "run", "start:prod"]
+
+FROM node:12.19.0-alpine3.9 AS development
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install glob rimraf
+
+RUN npm install --only=development
+
+COPY . .
+
+RUN npm run build
+
+FROM node:12.19.0-alpine3.9 as production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]
