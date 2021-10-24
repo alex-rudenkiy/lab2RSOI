@@ -25,7 +25,7 @@ jobs:
         run: |
           cd "./Rating System"
           echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --tag registry.heroku.com/rating-system-alex/web .
+          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/rating-system-alex/web .
           heroku container:push web --app rating-system-alex
           heroku container:release web --app rating-system-alex
           
