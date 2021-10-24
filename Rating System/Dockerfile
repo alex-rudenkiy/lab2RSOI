@@ -14,7 +14,7 @@ COPY . .
 RUN npm install
 RUN npm install @types/node --save-dev
 RUN ls
-RUN npm run start:prod
+RUN npm run start:dev
 
 
 #FROM node:10-alpine
