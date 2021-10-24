@@ -1,5 +1,5 @@
 ARG PORT
-ENV service_port=$PORT
+RUN echo ${PORT}
 
 
 # WORKDIR /app
