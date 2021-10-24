@@ -16,7 +16,7 @@ ENV service_port=$PORT
 #EXPOSE $service_port
 #CMD ["npm", "run", "start:prod"]
 
-RUN echo ${service_port}
+RUN echo $service_port
 
 FROM node:10 AS builder
 WORKDIR /app
