@@ -1,0 +1,42 @@
+name: GitHub Classroom Workflow
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    name: Autograding
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # TODO build, test and deploy project
+      - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
+        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+        with:
+          email:  "alex-rudenkiy@mail.ru"
+          heroku_api_key: 22b1b640-f541-4b04-b267-5356f8bcdaec 
+          heroku_app_name: "rating-system-alex"
+          dockerfile_directory: "./Rating System"
+          dockerfile_name: Dockerfile
+          docker_options: "--no-cache"
+          process_type: "web"    
+
+      - name: Run API Tests
+        id: run-newman
+        uses: anthonyvscode/newman-action@v1
+        with:
+          # TODO insert your variant
+          collection: 4/postman/[rsoi] postman_collection.json
+          environment: 4/postman/[rsoi][heroku] postman_environment.json
+          delayRequest: 50
+          reporters: cli
+
+      - uses: education/autograding@v1
+        id: autograder
+        continue-on-error: true
