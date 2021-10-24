@@ -1,5 +1,5 @@
 ARG PORT
-#ENV service_port=$PORT
+ENV service_port=$PORT
 
 
 # WORKDIR /app
@@ -16,7 +16,7 @@ ARG PORT
 #EXPOSE $service_port
 #CMD ["npm", "run", "start:prod"]
 
-RUN echo $PORT
+RUN echo ${service_port}
 
 FROM node:10 AS builder
 WORKDIR /app
