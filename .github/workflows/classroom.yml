@@ -11,6 +11,7 @@ jobs:
           fetch-depth: 0
 
   testing:
+    needs: startBuild
     name: Testing Microservice
     runs-on: self-hosted
     steps:
