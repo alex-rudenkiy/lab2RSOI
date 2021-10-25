@@ -7,11 +7,18 @@ export const DatabaseProviders = [
     useFactory: async () => {
       const sequelize = new Sequelize({
         dialect: 'postgres',
-        host: 'localhost',
+        protocol: 'postgres',
+        host: 'ec2-52-201-72-91.compute-1.amazonaws.com',
         port: 5432,
-        username: 'postgres',
-        password: 'postgres',
-        database: 'services',
+        username: 'ekjrzohusmpygr',
+        password: '738693c1201574df7b476276cf768264543fa33959e6a611b5f4612d5f7c01f5',
+        database: 'dfnge4tf0d5l61',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        }
       });
 
       await sequelize.sync();

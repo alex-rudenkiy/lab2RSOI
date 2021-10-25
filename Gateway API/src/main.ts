@@ -4,9 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 
 async function bootstrap() {
   global.HOSTS = {
-    "microService2":"http://localhost:4002",
-    "microService3":"http://localhost:4003",
-    "microService4":"http://localhost:4004"
+    "microService2":"https://library-system-alex.herokuapp.com",
+    "microService3":"https://reservation-system-alex.herokuapp.com",
+    "microService4":"https://rating-system-alex.herokuapp.com"
   };
   const _ = ConfigModule.forRoot();
 

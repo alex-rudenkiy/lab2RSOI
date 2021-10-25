@@ -11,24 +11,34 @@ jobs:
           fetch-depth: 0
 
       # TODO build, test and deploy project
-#       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-#         uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
-#         with:
-#           email:  "alex-rudenkiy@mail.ru"
-#           heroku_api_key: 22b1b640-f541-4b04-b267-5356f8bcdaec 
-#           heroku_app_name: "rating-system-alex"
-#           dockerfile_directory: "./Rating System"
-#           dockerfile_name: Dockerfile
-#           docker_options: "--no-cache"
-#           process_type: "web"    
-      - name: Build and push Docker to Heroku
+      - name: Build and push Docker to Heroku Service1
+        run: |
+          cd "./Gateway API"
+          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
+          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/gateway-api-alex/web .
+          heroku container:push web --app gateway-api-alex
+          heroku container:release web --app gateway-api-alex
+      - name: Build and push Docker to Heroku Service2
+        run: |
+          cd "./Library System"
+          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
+          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/library-system-alex/web .
+          heroku container:push web --app library-system-alex
+          heroku container:release web --app library-system-alex
+      - name: Build and push Docker to Heroku Service3
         run: |
           cd "./Rating System"
           echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
           docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/rating-system-alex/web .
           heroku container:push web --app rating-system-alex
           heroku container:release web --app rating-system-alex
-          
+      - name: Build and push Docker to Heroku Service4
+        run: |
+          cd "./Reservation System"
+          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
+          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/reservation-system-alex/web .
+          heroku container:push web --app reservation-system-alex
+          heroku container:release web --app reservation-system-alex
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
