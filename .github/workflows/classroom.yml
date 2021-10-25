@@ -18,7 +18,7 @@ jobs:
         id: run-newman
         uses: anthonyvscode/newman-action@v1
         with:
-          workingDir: "v4/postman"
+          workingDir: "./v4/postman/"
           # TODO insert your variant
           collection: "[rsoi] postman_collection.json"
           environment: "[rsoi][heroku] postman_environment.json"
