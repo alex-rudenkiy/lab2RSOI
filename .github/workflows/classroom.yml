@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0
 
   testing:
-    needs: [buildService1, buildService2, buildService3, buildService4]
+    needs: Autograding
     name: Testing Microservice
     runs-on: self-hosted
     steps:
