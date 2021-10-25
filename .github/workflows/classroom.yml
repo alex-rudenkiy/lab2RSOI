@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0
 
   testing:
-    needs: startBuild
+    needs: [buildService1, buildService2, buildService3, buildService4]
     name: Testing Microservice
     runs-on: self-hosted
     steps:
@@ -19,10 +19,9 @@ jobs:
         id: run-newman
         uses: anthonyvscode/newman-action@v1
         with:
-          #workingDir: "./v4/postman/"
           # TODO insert your variant
-          collection: "./v4/postman/[rsoi] postman_collection.json"
-          environment: "./v4/postman/[rsoi][heroku] postman_environment.json"
+          collection: 4/postman/[rsoi] postman_collection.json
+          environment: 4/postman/[rsoi][heroku] postman_environment.json
           delayRequest: 50
           reporters: cli
 
