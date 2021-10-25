@@ -18,10 +18,10 @@ jobs:
         id: run-newman
         uses: anthonyvscode/newman-action@v1
         with:
-          workingDir: "./v4/postman/"
+          #workingDir: "./v4/postman/"
           # TODO insert your variant
-          collection: "[rsoi] postman_collection.json"
-          environment: "[rsoi][heroku] postman_environment.json"
+          collection: "./v4/postman/[rsoi] postman_collection.json"
+          environment: "./v4/postman/[rsoi][heroku] postman_environment.json"
           delayRequest: 50
           reporters: cli
 
