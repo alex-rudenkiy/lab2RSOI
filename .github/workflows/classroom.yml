@@ -22,27 +22,6 @@ jobs:
           docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/gateway-api-alex/web .
           heroku container:push web --app gateway-api-alex
           heroku container:release web --app gateway-api-alex
-      - name: Build and push Docker to Heroku Service2
-        run: |
-          cd "./Library System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/library-system-alex/web .
-          heroku container:push web --app library-system-alex
-          heroku container:release web --app library-system-alex
-      - name: Build and push Docker to Heroku Service3
-        run: |
-          cd "./Rating System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/rating-system-alex/web .
-          heroku container:push web --app rating-system-alex
-          heroku container:release web --app rating-system-alex
-      - name: Build and push Docker to Heroku Service4
-        run: |
-          cd "./Reservation System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/reservation-system-alex/web .
-          heroku container:push web --app reservation-system-alex
-          heroku container:release web --app reservation-system-alex
           
   buildService2:
     needs: startBuild
@@ -56,20 +35,6 @@ jobs:
           docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/library-system-alex/web .
           heroku container:push web --app library-system-alex
           heroku container:release web --app library-system-alex
-      - name: Build and push Docker to Heroku Service3
-        run: |
-          cd "./Rating System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/rating-system-alex/web .
-          heroku container:push web --app rating-system-alex
-          heroku container:release web --app rating-system-alex
-      - name: Build and push Docker to Heroku Service4
-        run: |
-          cd "./Reservation System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/reservation-system-alex/web .
-          heroku container:push web --app reservation-system-alex
-          heroku container:release web --app reservation-system-alex
           
   buildService3:
     needs: startBuild
@@ -83,13 +48,6 @@ jobs:
           docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/rating-system-alex/web .
           heroku container:push web --app rating-system-alex
           heroku container:release web --app rating-system-alex
-      - name: Build and push Docker to Heroku Service4
-        run: |
-          cd "./Reservation System"
-          echo 22b1b640-f541-4b04-b267-5356f8bcdaec | docker login --username="alex-rudenkiy@mail.ru" registry.heroku.com --password-stdin
-          docker build --file "Dockerfile" --no-cache --build-arg PORT=7777 --tag registry.heroku.com/reservation-system-alex/web .
-          heroku container:push web --app reservation-system-alex
-          heroku container:release web --app reservation-system-alex
 
   buildService4:
     needs: startBuild
